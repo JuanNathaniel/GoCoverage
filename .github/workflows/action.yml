@@ -13,8 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
-          fetch-depth: 0
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
         
       - name: Setup go
         uses: actions/setup-go@v2 # Perbarui ke versi 2 untuk menggunakan Node.js 20
@@ -26,7 +26,7 @@ jobs:
           go test -v ./... -covermode=count -coverprofile=coverage.out
           go tool cover -func=coverage.out -o=coverage.out
   
-      - name: Go Coverage Badge
+      - name: Go Coverage Badge  # Pass the `coverage.out` output to this actionn
         uses: tj-actions/coverage-badge-go@v2
         with:
           filename: coverage.out
