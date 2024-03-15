@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
         
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v2 # Perbarui ke versi 2 untuk menggunakan Node.js 20
         with:
           go-version-file: 'go.mod'
   
@@ -49,5 +49,4 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.PBP_TEST }}
-          branch: ${{ github.head_ref }}
+          github_token: ${{ secrets
